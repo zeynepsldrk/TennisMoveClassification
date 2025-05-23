@@ -1,49 +1,45 @@
-# Tenis Hareketlerinin Sınıflandırılması Projesi
+# Classification of Tennis Movements Project
 
-Bu proje, 2024 Güz Dönemi'nde Google Colab ortamında geliştirilmiş olup, tenis oyuncularının videolardaki hareketlerini iskelet verileri üzerinden analiz ederek öğrenme tabanlı sınıflandırma yapmayı amaçlamaktadır. Temel amacı, hareketlerin (Backhand, Forehand, Serve) otomatik olarak sınıflandırılmasıdır.
+This project was developed in Google Colab environment in Fall Semester 2024 and aims to perform learning-based classification by analyzing the movements of tennis players in videos through skeletal data. Its main purpose is the automatic classification of movements (Backhand, Forehand, Serve).
 
-## Projenin Genel Amacı
+## General Purpose of the Project
 
-Tenis oyuncularının çeşitli vuruş pozisyonlarını (backhand, forehand, serve) video verileri üzerinden analiz etmek
+Analyzing various hitting positions of tennis players (backhand, forehand, serve) through video data
 
-MediaPipe ile iskelet noktalarını (keypoints) çıkartmak
+Extracting skeleton keypoints with MediaPipe
 
-Derin öğrenme modelleriyle (3D CNN + LSTM) sınıflandırma yapmak
+Classification with deep learning models (3D CNN + LSTM)
 
-Öznitelik çıkarımı, veri dengesini sağlama, özellik indirgeme (PCA, LDA), veri artırma gibi işlemler uygulamak
+Applying operations such as feature extraction, data balancing, feature reduction (PCA, LDA), data augmentation
 
-Kullanılan Teknolojiler ve Kütüphaneler
+Technologies and Libraries Used
 
-Proje, Python dili ve Google Colab ortamında geliştirilmiştir. OpenCV video işleme için, MediaPipe iskelet çıkarımı için, NumPy ve Pandas veri işleme için kullanılmıştır. Modelleme aşamasında TensorFlow/Keras ile 3D CNN + LSTM mimarisi kurulmuş, scikit-learn ile çeşitli makine öğrenmesi teknikleri uygulanmış, imbalanced-learn ile veri dengesi sağlanmış ve Matplotlib/Seaborn ile görselleştirme yapılmıştır.
+The project was developed in Python language and Google Colab environment. OpenCV was used for video processing, MediaPipe for skeleton extraction, NumPy and Pandas for data processing. In the modeling phase, 3D CNN + LSTM architecture was built with TensorFlow/Keras, various machine learning techniques were applied with scikit-learn, data balance was achieved with imbalanced-learn and visualization was done with Matplotlib/Seaborn.
 
-## Proje Aşamaları
+## Project Phases
 
- Veri Hazırlama: Videolar .avi formatındadır. Her 10. karede bir iskelet verileri çıkarılmıştır. MediaPipe kullanılarak 33 noktalık 3D koordinatlar elde edilmiştir. Veriler CSV ve NPY formatlarında kaydedilmiştir.
+ Data Preparation: Videos are in .avi format. Skeleton data was extracted every 10th frame. 3D coordinates of 33 points were obtained using MediaPipe. Data was saved in CSV and NPY formats.
 
- Veri Ön İşleme: İskelet verileri vektörel hale getirilmiştir. Dosya adlarından etiketleme yapılmıştır. Veri artırma teknikleri uygulanmış, SMOTE ile veri dengelenmiş ve MinMaxScaler ile normalizasyon yapılmıştır.
+ Data Preprocessing: Skeleton data were vectorized. Tagging was done from file names. Data augmentation techniques were applied, data balancing with SMOTE and normalization with MinMaxScaler.
 
- Öznitelik Çıkarımı ve Boyut Azaltma: PCA ve LDA yöntemleri kullanılmıştır. Tüm çerçeveler 33x33x3 tensör yapısına dönüştürülmüştür.
+ Feature Extraction and Dimensionality Reduction: PCA and LDA methods were used. All frames were transformed into a 33x33x3 tensor structure.
 
- Modelleme: 3D CNN, mekansal özellikleri çıkarmak için, LSTM ise zaman serisi ilişkileri için kullanılmıştır. Model 10-fold çapraz doğrulama ile test edilmiştir. Alternatif olarak SVM, Random Forest, KNN ve GBM gibi klasik algoritmalar da uygulanmıştır.
+ Modeling: 3D CNN was used to extract spatial features and LSTM was used for time series relations. The model was tested with 10-fold cross validation. Alternatively, classical algorithms such as SVM, Random Forest, KNN and GBM were also applied.
 
- Performans İstatistikleri
+  Performance Statistics
 
-Modelin doğruluk oranı %90’ın üzerindedir. F1 skoru 0.88 ile 0.92 arasında değişmiştir. Precision, recall ve AUC ROC değerleri hesaplanmıştır. Karmaşıklık matrisi ile hareketlerin karışma düzeyi analiz edilmiştir.
+The accuracy of the model is above 90%. The F1 score ranged between 0.88 and 0.92. Precision, recall and AUC ROC values were calculated. The complexity matrix was used to analyze the level of confusion of the movements.
 
-## Kullanılan Veri Seti
+## Data Set Used
 
-Bu projede THETIS Dataset adlı açık kaynaklı veri seti kullanılmıştır. Bu veri seti, tenis oyuncularının yan ve üstten çekilmiş çeşitli vuruş hareketlerini içerir. Hareketler, backhand2h, foreflat ve serflat gibi kategorilere ayrılmıştır. Daha fazla bilgi için: https://github.com/THETIS-dataset/dataset
+In this project, an open source dataset called THETIS Dataset was used. This dataset contains various strokes of tennis players, captured from the side and from above. The movements are categorized as backhand2h, foreflat and serflat. For more information: https://github.com/THETIS-dataset/dataset
 
-## Öğrenilenler
+## Learned
 
-3D CNN + LSTM mimarisinin hareket sınıflandırmada etkinliği
+Efficiency of 3D CNN + LSTM architecture for motion classification
 
-MediaPipe ile iskelet çıkarımının faydaları
+Benefits of skeleton extraction with MediaPipe
 
-Veri artırmanın etkisi
+Impact of data augmentation
 
-PCA ve LDA’nın boyut indirgemedeki rolleri öğrenilmiştir
-
-## Proje Dosya Yapısı
-
-Veriler, modeller, sonuçlar ve not defterleri ilgili klasörlerde toplanmıştır. Kodlar makale.py dosyasında bulunmaktadır.
+The roles of PCA and LDA in dimensionality reduction have been learned
