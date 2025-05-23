@@ -18,15 +18,15 @@ Proje, Python dili ve Google Colab ortamında geliştirilmiştir. OpenCV video i
 
 ## Proje Aşamaları
 
-### Veri Hazırlama: Videolar .avi formatındadır. Her 10. karede bir iskelet verileri çıkarılmıştır. MediaPipe kullanılarak 33 noktalık 3D koordinatlar elde edilmiştir. Veriler CSV ve NPY formatlarında kaydedilmiştir.
+ Veri Hazırlama: Videolar .avi formatındadır. Her 10. karede bir iskelet verileri çıkarılmıştır. MediaPipe kullanılarak 33 noktalık 3D koordinatlar elde edilmiştir. Veriler CSV ve NPY formatlarında kaydedilmiştir.
 
-### Veri Ön İşleme: İskelet verileri vektörel hale getirilmiştir. Dosya adlarından etiketleme yapılmıştır. Veri artırma teknikleri uygulanmış, SMOTE ile veri dengelenmiş ve MinMaxScaler ile normalizasyon yapılmıştır.
+ Veri Ön İşleme: İskelet verileri vektörel hale getirilmiştir. Dosya adlarından etiketleme yapılmıştır. Veri artırma teknikleri uygulanmış, SMOTE ile veri dengelenmiş ve MinMaxScaler ile normalizasyon yapılmıştır.
 
-### Öznitelik Çıkarımı ve Boyut Azaltma: PCA ve LDA yöntemleri kullanılmıştır. Tüm çerçeveler 33x33x3 tensör yapısına dönüştürülmüştür.
+ Öznitelik Çıkarımı ve Boyut Azaltma: PCA ve LDA yöntemleri kullanılmıştır. Tüm çerçeveler 33x33x3 tensör yapısına dönüştürülmüştür.
 
-### Modelleme: 3D CNN, mekansal özellikleri çıkarmak için, LSTM ise zaman serisi ilişkileri için kullanılmıştır. Model 10-fold çapraz doğrulama ile test edilmiştir. Alternatif olarak SVM, Random Forest, KNN ve GBM gibi klasik algoritmalar da uygulanmıştır.
+ Modelleme: 3D CNN, mekansal özellikleri çıkarmak için, LSTM ise zaman serisi ilişkileri için kullanılmıştır. Model 10-fold çapraz doğrulama ile test edilmiştir. Alternatif olarak SVM, Random Forest, KNN ve GBM gibi klasik algoritmalar da uygulanmıştır.
 
-### Performans İstatistikleri
+ Performans İstatistikleri
 
 Modelin doğruluk oranı %90’ın üzerindedir. F1 skoru 0.88 ile 0.92 arasında değişmiştir. Precision, recall ve AUC ROC değerleri hesaplanmıştır. Karmaşıklık matrisi ile hareketlerin karışma düzeyi analiz edilmiştir.
 
